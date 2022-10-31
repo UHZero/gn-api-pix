@@ -6,6 +6,13 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const axios = require('axios');
+const express = require('express');
+
+const app = express();
+
+app.set('view engine', 'ejs');
+app.set('views', 'src/views');
+
 
 const cert = fs.readFileSync(
     path.resolve(__dirname, `../certs/${process.env.GN_CERT}`)
@@ -22,17 +29,19 @@ const credentials = Buffer.from(
 
 const data = JSON.stringify({ grant_type: 'client_credentials' });
 
-axios({
-    method: 'POST',
-    url: `${process.env.GN_ENDPOINT}/oauth/token`,
-    headers: {
-        Authorization: `Basic ${credentials}`,
-        'Content-Type': 'application/json'
-    },
-    httpsAgent: agent,
-    data: data
-}).then(async (resp) => {
-    const accessToken = await resp.data?.access_token;
+app.get('/', async (req, res) => {
+    const authResponse = await axios({
+        method: 'POST',
+        url: `${process.env.GN_ENDPOINT}/oauth/token`,
+        headers: {
+            Authorization: `Basic ${credentials}`,
+            'Content-Type': 'application/json'
+        },
+        httpsAgent: agent,
+        data: data
+    })
+
+    const accessToken = await authResponse.data?.access_token;
 
     const reqGN = axios.create({
         baseURL: process.env.GN_ENDPOINT,
@@ -41,7 +50,7 @@ axios({
             Authorization: `Bearer ${accessToken}`,
             'Content-Type': 'application/json'
         }
-    })
+    });
 
     const dataCob = {
         "calendario": {
@@ -55,8 +64,13 @@ axios({
     };
 
 
-    reqGN.post('/v2/cob', dataCob).then((resp) => console.log(resp.data))
-})
+    const cobResponse = await reqGN.post('/v2/cob', dataCob)
+
+    res.send(cobResponse.data);
+});
+
+app.listen(8000, () => console.log('running'))
+
 
 
 
