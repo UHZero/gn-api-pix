@@ -4,10 +4,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 const express = require('express');
+const bodyParser = require('body-parse');
 
 const app = express();
 const GNRequest = require('./apis/gerencianet')
 
+app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 
@@ -51,6 +53,11 @@ app.get('/cobrancas', async (req, res) => {
 
     res.send(cobResponse.data)
 
+})
+
+app.post('/webhook', async (req, res) => {
+    console.log(req.body);
+    res.send(200);
 })
 
 app.listen(8000, () => console.log('running'))

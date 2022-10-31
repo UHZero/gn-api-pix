@@ -19,7 +19,7 @@ const authenticated = ({ clientID, clientSecret }) => {
     const credentials = Buffer.from(
         `${clientID}:${clientSecret}`
     ).toString('base64');
-    console.log('HELLO')
+
     return axios({
         method: 'POST',
         url: `${process.env.GN_ENDPOINT}/oauth/token`,
