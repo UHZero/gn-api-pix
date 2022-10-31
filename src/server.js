@@ -64,9 +64,14 @@ app.get('/', async (req, res) => {
     };
 
 
-    const cobResponse = await reqGN.post('/v2/cob', dataCob)
+    const cobResponse = await reqGN.post('/v2/cob', dataCob);
 
-    res.send(cobResponse.data);
+
+    const qrCodeResponse = await reqGN.get(`/v2/loc/${cobResponse.data.loc.id}/qrcode`);
+
+    // res.send(qrCodeResponse.data);
+
+    res.render('qrcode', { qrcodeImage: qrCodeResponse.data.imagemQrcode })
 });
 
 app.listen(8000, () => console.log('running'))
