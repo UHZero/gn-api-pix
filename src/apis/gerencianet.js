@@ -12,13 +12,13 @@ const agent = new https.Agent({
     passphrase: ''
 });
 
-const credentials = Buffer.from(
-    `${process.env.GN_ID}:${process.env.GN_SECRET}`
-).toString('base64');
 
 const data = JSON.stringify({ grant_type: 'client_credentials' });
 
-const authenticated = () => {
+const authenticated = ({ clientID, clientSecret }) => {
+    const credentials = Buffer.from(
+        `${clientID}:${clientSecret}`
+    ).toString('base64');
     console.log('HELLO')
     return axios({
         method: 'POST',
@@ -32,8 +32,8 @@ const authenticated = () => {
     })
 }
 
-const GNRequest = async () => {
-    const authResponse = await authenticated();
+const GNRequest = async (credentials) => {
+    const authResponse = await authenticated(credentials);
     const accessToken = authResponse.data?.access_token;
 
     return axios.create({
