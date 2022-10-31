@@ -55,24 +55,9 @@ app.get('/cobrancas', async (req, res) => {
 
 })
 
-app.post('/webhook', async (req, res) => {
+app.post('/webhook(/pix)?', async (req, res) => {
     console.log(req.body);
     res.send(200);
 })
 
 app.listen(8000, () => console.log('running'))
-
-
-
-
-// console.log(cert)
-
-
-
-// curl --request POST \
-//   --url https://api-pix-h.gerencianet.com.br/oauth/token \
-//   --header 'Authorization: Basic Q2xpZW50X0lkXzkyNmEzZGEyNzA4ZWJmMzRjY2YxMjk4OWRjNDM3M2RkOTYxNDllYWE6Q2xpZW50X1NlY3JldF9kMGNlYTgzOTc5MTJjYjZhYzdhMzMzZmE5MzU1ZGNlYTM0ZDAwOWUz' \
-//   --header 'Content-Type: application/json' \
-//   --data '{
-// 	"grant_type": "client_credentials"
-// }'
