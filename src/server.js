@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 const express = require('express');
-const bodyParser = require('body-parse');
+const bodyParser = require('body-parser');
 
 const app = express();
 const GNRequest = require('./apis/gerencianet')
@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
             "expiracao": 3600
         },
         "valor": {
-            "original": "123.45"
+            "original": "00.10"
         },
         "chave": "bc3313c0-ec1d-41e3-a204-53fbee0c4ae3",
         "solicitacaoPagador": "Informe o número ou identificador do pedido."
