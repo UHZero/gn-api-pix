@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 const express = require('express');
-const bodyParser = require('body-parse');
+const bodyParser = require('body-parser');
 
 const app = express();
 const GNRequest = require('./apis/gerencianet')
