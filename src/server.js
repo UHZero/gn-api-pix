@@ -14,9 +14,6 @@ app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 
 
-
-
-
 const reqGNAlready = GNRequest({
     clientID: process.env.GN_ID,
     clientSecret: process.env.GN_SECRET
@@ -40,8 +37,6 @@ app.get('/', async (req, res) => {
 
 
     const qrCodeResponse = await reqGN.get(`/v2/loc/${cobResponse.data.loc.id}/qrcode`);
-
-    // res.send(qrCodeResponse.data);
 
     res.render('qrcode', { qrcodeImage: qrCodeResponse.data.imagemQrcode })
 });
