@@ -1,4 +1,5 @@
 const { ChargesListService } = require("../services/ChargesListService.js");
+const { ListReceivedPixService } = require("../services/ListReceivedPixService.js");
 const { QrCodeService } = require("../services/QrCodeService.js");
 
 class pixController {
@@ -15,6 +16,15 @@ class pixController {
         // const { start, end } = req.query;
         try {
             await ChargesListService.execute()
+                .then(resp => res.status(200).json(resp.data))
+        } catch (err) {
+            res.status(400).send(err.message)
+        }
+    }
+
+    static async pixList(req, res) {
+        try {
+            await ListReceivedPixService.execute()
                 .then(resp => res.status(200).json(resp.data))
         } catch (err) {
             res.status(400).send(err.message)

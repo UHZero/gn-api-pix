@@ -8,5 +8,6 @@ const pixRoutes = Router()
 
 pixRoutes.get('/', pixController.qrcodeGen)
 pixRoutes.get('/cobrancas', pixController.cobList)
+pixRoutes.get('/relatorio', pixController.pixList)
 
 module.exports = { pixRoutes }
