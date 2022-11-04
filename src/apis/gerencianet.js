@@ -51,7 +51,7 @@ const GNRequest = async (credentials) => {
 
     if (isAfter(Date.now(), compareDate)) {
         console.log('chamou a função')
-        return getToken(credentials)
+        return GNRequest(credentials)
     }
 
 
