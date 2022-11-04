@@ -1,8 +1,8 @@
 const { reqGNAlready } = require("../shared/GNClientConnect");
-const { beforeDay, dataRFC } = require('../shared/DateRFC');
+const { yesterday, dataRFC } = require('../shared/DateRFC');
 
 class ListReceivedPixService {
-    static async execute(start = beforeDay, end = dataRFC) {
+    static async execute(start = yesterday, end = dataRFC) {
         const reqGN = await reqGNAlready;
 
         return await reqGN.get(`/v2/pix?inicio=${start}&fim=${end}`)

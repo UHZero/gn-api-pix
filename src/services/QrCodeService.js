@@ -1,9 +1,10 @@
 const { reqGNAlready } = require("../shared/GNClientConnect");
-const pocGNreq = reqGNAlready.then()
+const pocGNreq = reqGNAlready
 class QrCodeService {
     static async execute() {
+
         const reqGN = await pocGNreq;
-        // console.log(reqGN)
+        console.log(reqGN)
 
         const dataCob = {
             "calendario": {

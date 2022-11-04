@@ -47,8 +47,9 @@ const GNRequest = async (credentials) => {
     const { accessToken } = await getToken(credentials);
 
     setTimeout(async () => {
+        console.log('chamou a função')
         await GNRequest(credentials)
-    }, 3600000)
+    }, 10000)
 
     return axios.create({
         baseURL: process.env.GN_ENDPOINT,
