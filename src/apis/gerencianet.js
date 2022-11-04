@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const axios = require('axios');
-const { isAfter, addHours } = require('date-fns');
 
 const cert = fs.readFileSync(
     path.resolve(__dirname, `../../certs/${process.env.GN_CERT}`)
@@ -45,15 +44,11 @@ async function getToken(credentials) {
 
 const GNRequest = async (credentials) => {
 
-    const { accessToken, createdAt } = await getToken(credentials);
+    const { accessToken } = await getToken(credentials);
 
-    const compareDate = addHours(createdAt, 1)
-
-    if (isAfter(Date.now(), compareDate)) {
-        console.log('chamou a função')
-        return GNRequest(credentials)
-    }
-
+    setTimeout(async () => {
+        await GNRequest(credentials)
+    }, 3600000)
 
     return axios.create({
         baseURL: process.env.GN_ENDPOINT,
