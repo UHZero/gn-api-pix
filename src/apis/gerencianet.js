@@ -38,18 +38,15 @@ async function getToken(credentials) {
     const createdAt = Date.now();
     authData.accessToken = authResponse.data?.access_token;
     authData.createdAt = createdAt;
-    console.log(authData)
+    // console.log(authData)
     return authData
 }
 
-const GNRequest = async (credentials) => {
+const GNRequest = async (token) => {
 
-    const { accessToken } = await getToken(credentials);
+    const accessToken = token;
 
-    setTimeout(async () => {
-        console.log('chamou a função')
-        await GNRequest(credentials)
-    }, 10000)
+    // console.log(accessToken)
 
     return axios.create({
         baseURL: process.env.GN_ENDPOINT,
@@ -61,4 +58,4 @@ const GNRequest = async (credentials) => {
     });
 };
 
-module.exports = GNRequest;
+module.exports = { GNRequest, getToken };

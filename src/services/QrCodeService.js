@@ -1,10 +1,30 @@
-const { reqGNAlready } = require("../shared/GNClientConnect");
-const pocGNreq = reqGNAlready
+const { clientCredentials } = require("../shared/GNClientConnect");
+const { isAfter, addHours } = require("date-fns");
+const { getToken, GNRequest } = require("../apis/gerencianet")
+
+const authData = getToken(clientCredentials)
 class QrCodeService {
     static async execute() {
 
-        const reqGN = await pocGNreq;
-        console.log(reqGN)
+        const { accessToken, createdAt } = await authData
+
+        let token = accessToken
+        let create = createdAt
+
+        let compareData = addHours(create, 1);
+
+        if (isAfter(create, compareData)) {
+            let { accessToken, createdAt } = await getToken(clientCredentials);
+
+            console.log('token refreshed: ', accessToken)
+
+            token = accessToken;
+            create = createdAt;
+        }
+
+        const reqGN = await GNRequest(token);
+
+        // console.log(reqGN)
 
         const dataCob = {
             "calendario": {
