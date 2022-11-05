@@ -3,13 +3,19 @@ const { isAfter, addHours } = require("date-fns");
 const { getToken, GNRequest } = require("../apis/gerencianet")
 
 const authData = getToken(clientCredentials)
+
+let token;
+let create;
+
 class QrCodeService {
     static async execute() {
 
         const { accessToken, createdAt } = await authData
 
-        let token = accessToken
-        let create = createdAt
+        token = accessToken;
+        create = createdAt;
+
+        // console.log(token)
 
         let compareData = addHours(create, 1);
 
