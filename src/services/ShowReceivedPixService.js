@@ -27,7 +27,11 @@ class ShowReceivedPixService {
 
         const listPixResponse = await reqGN.get(`/v2/pix?inicio=${start}&fim=${end}`)
 
+        console.log('pix resp => ', listPixResponse)
+
         const payload = listPixResponse.data?.pix.filter(el => el.txid === id)
+
+        console.log('payload => ', payload)
 
         if (!payload) {
             throw new Error('invalid ID, please verify pix confirmation!')
