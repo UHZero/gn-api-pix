@@ -37,7 +37,7 @@ class ShowReceivedPixService {
             throw new Error('invalid ID, please verify pix confirmation!')
         }
 
-        return await reqGN.get(`/v2/pix/${payload.endToEndId}`)
+        return await reqGN.get(`/v2/pix/${payload[0].endToEndId}`)
             .then(resp => resp)
     }
 }
