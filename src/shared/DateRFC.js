@@ -1,4 +1,6 @@
 const data = new Date()
+const oneHour = data.getHours() + 1
+data.setHours(oneHour)
 const formatData = data.toISOString().split('')
 formatData.splice(22, 1)
 const dataRFC = formatData.join('')
