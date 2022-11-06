@@ -19,14 +19,16 @@ class QrCodeService {
 
         let compareData = addHours(create, 1);
 
-        if (isAfter(create, compareData)) {
+        if (isAfter(Date.now(), compareData)) {
             let { accessToken, createdAt } = await getToken(clientCredentials);
 
-            console.log('token refreshed: ', accessToken)
+            // console.log('token refreshed: ', accessToken)
 
             token = accessToken;
             create = createdAt;
         }
+
+        // console.log('token refreshed successful: ', token)
 
         const reqGN = await GNRequest(token);
 
