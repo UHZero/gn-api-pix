@@ -24,7 +24,7 @@ class ChargesListService {
             create = createdAt;
         }
 
-        const reqGN = GNRequest(token)
+        const reqGN = await GNRequest(token)
 
         return await reqGN.get(`/v2/cob?inicio=${start}&fim=${end}`)
             .then(resp => resp)

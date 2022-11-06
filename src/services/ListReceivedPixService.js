@@ -23,7 +23,7 @@ class ListReceivedPixService {
             create = createdAt;
         }
 
-        const reqGN = GNRequest(token)
+        const reqGN = await GNRequest(token)
 
         return await reqGN.get(`/v2/pix?inicio=${start}&fim=${end}`)
             .then(resp => resp)
