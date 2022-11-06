@@ -15,24 +15,16 @@ class QrCodeService {
         token = accessToken;
         create = createdAt;
 
-        // console.log(token)
-
         let compareData = addHours(create, 1);
 
         if (isAfter(Date.now(), compareData)) {
             let { accessToken, createdAt } = await getToken(clientCredentials);
 
-            // console.log('token refreshed: ', accessToken)
-
             token = accessToken;
             create = createdAt;
         }
 
-        // console.log('token refreshed successful: ', token)
-
         const reqGN = await GNRequest(token);
-
-        // console.log(reqGN)
 
         const dataCob = {
             "calendario": {
@@ -46,8 +38,6 @@ class QrCodeService {
         };
 
         const cobResponse = await reqGN.post('/v2/cob', dataCob);
-
-        // console.log(cobResponse.data)
 
         return await reqGN.get(`/v2/loc/${cobResponse.data.loc.id}/qrcode`)
             .then(resp => resp)
