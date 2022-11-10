@@ -41,6 +41,11 @@ class pixController {
             res.status(400).send(err.message)
         }
     }
+
+    static async pixWebhook(req, res) {
+        console.log(req.body);
+        res.send(200);
+    }
 }
 
 module.exports = { pixController }
