@@ -5,8 +5,9 @@ const { ShowReceivedPixService } = require("../services/ShowReceivedPixService.j
 
 class pixController {
     static async qrcodeGen(req, res) {
+        const { value } = req.query;
         try {
-            await QrCodeService.execute()
+            await QrCodeService.execute(value)
                 .then(resp => res.status(200).render('qrcode', { qrcodeImage: resp.data.imagemQrcode }))
         } catch (err) {
             res.status(400).send(err.message)
@@ -45,6 +46,15 @@ class pixController {
     static async pixWebhook(req, res) {
         console.log(req.body);
         res.send(200);
+    }
+
+    static async successPay(req, res) {
+        try {
+            await ListReceivedPixService.execute()
+                .then(resp => res.status(200).render('qrcode', { successPay: resp.data }))
+        } catch (err) {
+            res.status(400).send(err.message)
+        }
     }
 }
 

@@ -8,7 +8,7 @@ const pixRoutes = Router()
 
 pixRoutes.get('/', pixController.qrcodeGen)
 pixRoutes.get('/cobrancas', pixController.cobList)
-pixRoutes.get('/relatorio', pixController.pixList)
+pixRoutes.get('/', pixController.successPay)
 pixRoutes.get('/consulta/:id', pixController.pixShow)
 pixRoutes.post('webhooks(/pix)?', pixController.pixWebhook)
 

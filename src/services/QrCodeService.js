@@ -8,7 +8,7 @@ let token;
 let create;
 
 class QrCodeService {
-    static async execute() {
+    static async execute(billValue) {
 
         const { accessToken, createdAt } = await authData
 
@@ -26,16 +26,23 @@ class QrCodeService {
 
         const reqGN = await GNRequest(token);
 
-        const dataCob = {
+        if (!billValue) {
+            billValue = "00.01"
+        }
+
+        const parseValue = parseFloat(billValue).toFixed(2);
+        billValue = parseValue.toString()
+
+        const dataCob = JSON.stringify({
             "calendario": {
                 "expiracao": 3600
             },
             "valor": {
-                "original": "00.10"
+                "original": `${billValue}`
             },
             "chave": "bc3313c0-ec1d-41e3-a204-53fbee0c4ae3",
             "solicitacaoPagador": "UHZero.com.br"
-        };
+        });
 
         const cobResponse = await reqGN.post('/v2/cob', dataCob);
 

@@ -9,5 +9,16 @@
 <body>
     <h1>QR CODE</h1>
     <img src="<%= qrcodeImage %>" alt="">
+
+
+    <form action="">
+        <input type="text" name="value" id="value" placeholder="digite o valor do PIX!">
+        <input type="submit" value="enviar">
+    </form>
+
+    <hr />
+    <% if (successPay) { %>
+        <h2><%= successPay.valor %></h2>
+    <% } %>
 </body>
 </html>
