@@ -25,7 +25,20 @@ class ListReceivedPixService {
 
         const reqGN = await GNRequest(token)
 
-        return await reqGN.get(`/v2/pix?inicio=${start}&fim=${end}`)
+        const reqList = await reqGN.get(`/v2/pix?inicio=${start}&fim=${end}`)
+
+        let payload = Object.create(null)
+        let arr = []
+
+        for (let i = 0; i < reqList.data.pix.length; i++) {
+            arr.push(
+                payload.id = reqList.data.pix[i].txid,
+                payload.value = reqList.data.pix[i].valor,
+                payload.date = new Date(`${reqList.data.pix[i].horario}`).toLocaleTimeString()
+            )
+        }
+
+        return arr
             .then(resp => resp)
     }
 }
