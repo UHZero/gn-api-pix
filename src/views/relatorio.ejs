@@ -18,7 +18,7 @@
 
     <% for(let i = 0; i < successPay.length; i++){ %>
     <li>
-        Total de recebimentos: <%= successPay.reduce((a, b) => a.value + b.value, []) %>
+        Total de recebimentos: <%= successPay.reduce((a, b) => a.value? + b.value?, []) %>
     </li>
     <% } %>
 
