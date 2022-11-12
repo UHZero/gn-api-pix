@@ -16,9 +16,9 @@
     <hr />
     <% } %>
 
-    <%= var result;%>
+    <% var result = 0%>
     <% for(let i = 0; i < successPay.length; i++){ %>
-        <%= result = successPay.reduce((a, b) => (a.value || 0) + (b.value || 0), []) %>
+        <%= result = successPay.reduce((a, b) => (parseFloat(a.value) || 0) + (parseFloat(b.value) || 0), []) %>
     <% } %>
 
     <li>
