@@ -9,11 +9,18 @@
 <body>
     <% for(let i = 0; i < successPay.length; i++){ %>
     <li>
-        ID: <%= successPay[i].id %> </br>
-        VALOR: <%= successPay[i].value %> </br>
+        ID: <%= successPay[i].id %> </br> btn
+        VALOR: R$<%= successPay[i].value %> </br>
         HORARIO: <%= successPay[i].date %> </br>
     </li>
     <hr />
     <% } %>
+
+    <% for(let i = 0; i < successPay.length; i++){ %>
+    <li>
+        Total de recebimentos: <% successPay.reduce((a, b) => a.value + b.value, []) %>
+    </li>
+    <% } %>
+
 </body>
 </html>
