@@ -9,7 +9,7 @@
 <body>
     <% for(payload of successPay){ %>
     <li>
-        <%= payload %>
+        <% payload.forEach(el => el.valor) %>
     </li>
     <% } %>
 </body>
