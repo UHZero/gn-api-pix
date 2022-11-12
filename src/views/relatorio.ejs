@@ -8,8 +8,9 @@
 </head>
 <body>
     <% for(let i = 0; i < successPay.length; i++){ %>
-    <% var data = Date(successPay[i].horario).toLocaleTimeString() %>
+    <% var data = Date(`${successPay[i].horario}`).toLocaleTimeString() %>
     <li>
+        <%= successPay[i].valor %>
         <%= data %>
     </li>
     <% } %>
