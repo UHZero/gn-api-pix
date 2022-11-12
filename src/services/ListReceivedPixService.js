@@ -27,14 +27,14 @@ class ListReceivedPixService {
 
         const reqList = await reqGN.get(`/v2/pix?inicio=${start}&fim=${end}`)
 
-        let payload = Object.create(null)
         let arr = []
 
         for (let i = 0; i < reqList.data.pix.length; i++) {
+            let payload = Object.create(null)
             arr.push(
-                payload[i].id = reqList.data.pix[i].txid,
-                payload[i].value = reqList.data.pix[i].valor,
-                payload[i].date = new Date(`${reqList.data.pix[i].horario}`).toLocaleTimeString()
+                payload.id = reqList.data.pix[i].txid,
+                payload.value = reqList.data.pix[i].valor,
+                payload.date = new Date(`${reqList.data.pix[i].horario}`).toLocaleTimeString()
             )
         }
         console.log(arr)
