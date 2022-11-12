@@ -7,11 +7,10 @@
     <title>Relatório PIX</title>
 </head>
 <body>
-    <% for(payload of successPay){ %>
+    <% for(let i = 0; i < successPay.length; i++){ %>
     <li>
-        <%= payload %>
+        <%= successPay[i].valor %>
     </li>
-    <% console.log(payload) %>
     <% } %>
 </body>
 </html>
