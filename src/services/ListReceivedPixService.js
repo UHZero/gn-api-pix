@@ -37,6 +37,7 @@ class ListReceivedPixService {
                 payload.date = new Date(`${reqList.data.pix[i].horario}`).toLocaleTimeString()
             )
         }
+        console.log(arr)
 
         return arr
     }
