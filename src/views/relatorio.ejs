@@ -18,7 +18,7 @@
 
     <% var result = 0%>
     <% for(let i = 0; i < successPay.length; i++){ %>
-        <%= result += parseFloat(successPay[i].value) %>
+        <% result += parseFloat(successPay[i].value) %>
     <% } %>
 
     <li>
