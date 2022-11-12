@@ -18,11 +18,11 @@
 
     <% var result = 0%>
     <% for(let i = 0; i < successPay.length; i++){ %>
-        <%= result = successPay.reduce((a, b) => (parseFloat(a.value) || 0) + (parseFloat(b.value) || 0), []) %>
+        <%= result += parseFloat(successPay[i].value)
     <% } %>
 
     <li>
-        <%= result %>
+        <%= result.toFixed(2) %>
     </li>
 
 </body>
