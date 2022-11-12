@@ -32,9 +32,9 @@ class ListReceivedPixService {
 
         for (let i = 0; i < reqList.data.pix.length; i++) {
             arr.push(
-                payload.id = reqList.data.pix[i].txid,
-                payload.value = reqList.data.pix[i].valor,
-                payload.date = new Date(`${reqList.data.pix[i].horario}`).toLocaleTimeString()
+                payload[i].id = reqList.data.pix[i].txid,
+                payload[i].value = reqList.data.pix[i].valor,
+                payload[i].date = new Date(`${reqList.data.pix[i].horario}`).toLocaleTimeString()
             )
         }
         console.log(arr)
