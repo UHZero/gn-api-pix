@@ -39,7 +39,6 @@ class ListReceivedPixService {
         }
 
         return arr
-            .then(resp => resp)
     }
 }
 
