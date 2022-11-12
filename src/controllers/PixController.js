@@ -51,7 +51,7 @@ class pixController {
     static async successPay(req, res) {
         try {
             await ListReceivedPixService.execute()
-                .then(resp => res.status(200).render('relatorio', { successPay: resp.data.pix }))
+                .then(resp => res.status(200).render('relatorio', { successPay: resp.data.pix.valor }))
         } catch (err) {
             res.status(400).send(err.message)
         }
