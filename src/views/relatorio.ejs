@@ -16,11 +16,14 @@
     <hr />
     <% } %>
 
+    <%= var result;%>
     <% for(let i = 0; i < successPay.length; i++){ %>
-    <li>
-        Total de recebimentos: <%= successPay.reduce((a, b) => (a.value || 0) + (b.value || 0), []) %>
-    </li>
+        <%= result = successPay.reduce((a, b) => (a.value || 0) + (b.value || 0), []) %>
     <% } %>
+
+    <li>
+        <%= result %>
+    </li>
 
 </body>
 </html>
