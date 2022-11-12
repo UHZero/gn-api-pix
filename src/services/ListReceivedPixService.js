@@ -30,7 +30,7 @@ class ListReceivedPixService {
         let arr = []
 
         for (let i = 0; i < reqList.data.pix.length; i++) {
-            let payload = Object.create(null)
+            let payload = new Object.create(null)
             arr.push(
                 payload.id = reqList.data.pix[i].txid,
                 payload.value = reqList.data.pix[i].valor,
