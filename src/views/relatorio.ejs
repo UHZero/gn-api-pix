@@ -10,7 +10,7 @@
     <% for(let i = 0; i < successPay.length; i++){ %>
     <li>
         ID: <%= successPay[i].id %> </br> btn
-        VALOR: R$<%= successPay[i].value %> </br>
+        VALOR: R$ <%= successPay[i].value %> </br>
         HORARIO: <%= successPay[i].date %> </br>
     </li>
     <hr />
@@ -18,11 +18,11 @@
 
     <% var result = 0%>
     <% for(let i = 0; i < successPay.length; i++){ %>
-        <%= result += parseFloat(successPay[i].value)
+        <%= result += parseFloat(successPay[i].value) %>
     <% } %>
 
     <li>
-        <%= result.toFixed(2) %>
+        Total de Recebimentos: R$ <%= result.toFixed(2) %>
     </li>
 
 </body>
