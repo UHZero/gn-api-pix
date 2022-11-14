@@ -18,6 +18,7 @@ class pixController {
     static async cobList(req, res) {
         let start = yesterday;
         let end = dataRFC;
+        console.log('start: ' + start, 'end: ' + end)
         try {
             await ChargesListService.execute(start, end)
                 .then(resp => res.status(200).json(resp.data))
