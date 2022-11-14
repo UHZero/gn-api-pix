@@ -52,8 +52,11 @@ class pixController {
     }
 
     static async successPay(req, res) {
+        let start = yesterday;
+        let end = dataRFC;
+        console.log('start: ' + start, 'end: ' + end)
         try {
-            await ListReceivedPixService.execute()
+            await ListReceivedPixService.execute(start, end)
                 .then(resp => res.status(200).render('relatorio', { successPay: resp }))
         } catch (err) {
             res.status(400).send(err.message)
