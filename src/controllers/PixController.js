@@ -2,7 +2,7 @@ const { ChargesListService } = require("../services/ChargesListService.js");
 const { ListReceivedPixService } = require("../services/ListReceivedPixService.js");
 const { QrCodeService } = require("../services/QrCodeService.js");
 const { ShowReceivedPixService } = require("../services/ShowReceivedPixService.js");
-const { yesterday, dataRFC } = require('../shared/DateRFC');
+const { getYesterday, getToday } = require('../shared/DateRFC');
 
 class pixController {
     static async qrcodeGen(req, res) {
@@ -16,9 +16,9 @@ class pixController {
     }
 
     static async cobList(req, res) {
-        let start = yesterday;
-        let end = dataRFC;
-        console.log('start: ' + start, 'end: ' + end)
+        // let start = yesterday;
+        // let end = dataRFC;
+        // console.log('start: ' + start, 'end: ' + end)
         try {
             await ChargesListService.execute(start, end)
                 .then(resp => res.status(200).json(resp.data))
@@ -52,8 +52,8 @@ class pixController {
     }
 
     static async successPay(req, res) {
-        let start = yesterday;
-        let end = dataRFC;
+        let start = getYesterday();
+        let end = getToday();
         console.log('start: ' + start, 'end: ' + end)
         try {
             await ListReceivedPixService.execute(start, end)
