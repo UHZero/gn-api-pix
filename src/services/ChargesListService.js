@@ -1,4 +1,4 @@
-const { yesterday, dataRFC } = require('../shared/DateRFC');
+const { getYesterday, getToday } = require('../shared/DateRFC');
 const { clientCredentials } = require("../shared/GNClientConnect");
 const { isAfter, addHours } = require("date-fns");
 const { getToken, GNRequest } = require("../apis/gerencianet")
@@ -7,9 +7,12 @@ const authData = getToken(clientCredentials)
 
 let token;
 let create;
+let start;
+let end;
 class ChargesListService {
-    static async execute(start = yesterday, end = dataRFC) {
-
+    static async execute() {
+        start = getYesterday()
+        end = getToday()
         const { accessToken, createdAt } = await authData
 
         token = accessToken;

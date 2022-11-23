@@ -1,5 +1,6 @@
 const { ChargesListService } = require("../services/ChargesListService.js");
 const { ListReceivedPixService } = require("../services/ListReceivedPixService.js");
+const PixConfirmService = require("../services/PixConfirmService.js");
 const { QrCodeService } = require("../services/QrCodeService.js");
 const { ShowReceivedPixService } = require("../services/ShowReceivedPixService.js");
 const { getYesterday, getToday } = require('../shared/DateRFC');
@@ -20,7 +21,7 @@ class pixController {
         // let end = dataRFC;
         // console.log('start: ' + start, 'end: ' + end)
         try {
-            await ChargesListService.execute(start, end)
+            await ChargesListService.execute()
                 .then(resp => res.status(200).json(resp.data))
         } catch (err) {
             res.status(400).send(err.message)
@@ -54,10 +55,12 @@ class pixController {
     static async successPay(req, res) {
         let start = getYesterday();
         let end = getToday();
-        console.log('start: ' + start, 'end: ' + end)
+        // const topic = 'confirm-issue'
         try {
             await ListReceivedPixService.execute(start, end)
                 .then(resp => res.status(200).render('relatorio', { successPay: resp }))
+            // await KafkaConsumerService.execute(topic)
+            //     .then(resp => res.status(200).render('kafka', { moment: resp?.Hello }))
         } catch (err) {
             res.status(400).send(err.message)
         }

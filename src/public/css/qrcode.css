@@ -39,14 +39,32 @@ form {
     border: solid 1px seagreen;
     border-radius: 20px;
     background-color: seagreen;
+    color: whitesmoke;
+    font-size: 1.2em;
 }
 
 .selected:hover {
     background-color: springgreen;
     border: solid 1px springgreen;
+    color: black;
 }
 
 .pix {
     align-self: center;
     text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+    background: seagreen;
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 1.2em;
+}
+
+a:hover {
+    background-color: springgreen;
+    border: solid 1px springgreen;
+    color: black;
 }
